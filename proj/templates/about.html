@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Niajiri - The Funky Job Connector!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .companies-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #667eea;
+            margin: 3rem 0;
+        }
+
+        /* Company Cards Grid */
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .company-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .company-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .company-info {
+            background: #f8f8f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .company-info strong {
+            color: #667eea;
+        }
+
+        .view-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.3s;
+            font-weight: bold;
+        }
+
+        .view-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="{% url 'index' %}" class="logo">💼 Niajiri</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'jobs' %}">Jobs</a></li>
+                <li><a href="{% url 'employers' %}">Employers</a></li>
+                <li><a href="{% url 'business_list' %}">Businesses</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'payment' %}">Pay Service</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Discover Niajiri: Purposeful Jobs in Style! 🎉</h1>
+        <p>Where innovation meets opportunity</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <p class="intro-text">
+            Niajiri isn't just a job site – it's a revolution! 🌟 We blend innovation with purpose to create a job-hunting experience that's as fun as it is effective. Niajiri = Nia (Purpose) + Jiri (from Job) = Purposeful Jobs that light up your life! 🔥
+        </p>
+
+        <h2 class="companies-title">Why Niajiri Rocks! 🚀</h2>
+
+        <!-- Features Grid -->
+        <div class="companies-grid">
+            <!-- 1. What is Niajiri? -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">💼</div>
+                        <h3>What is Niajiri?</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        Niajiri is the coolest job platform around! We combine purpose with opportunity to create a space where jobs have real meaning. We're not just matching resumes – we're connecting dreams with possibilities! ✨
+                    </p>
+                    <div class="company-info">
+                        <strong>Founded:</strong> 2024<br>
+                        <strong>Mission:</strong> Purposeful Employment
+                    </div>
+                    <a href="{% url 'jobs' %}" class="view-link">Explore Jobs →</a>
+                </div>
+            </div>
+
+            <!-- 2. Smart Search -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">🔍</div>
+                        <h3>Smart Search</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        Our advanced search lets you find jobs that truly match your skills and interests. Filter by location, salary, industry – whatever matters to you. Finding your perfect job has never been easier! 🎯
+                    </p>
+                    <div class="company-info">
+                        <strong>Filters:</strong> Location, Salary, Industry<br>
+                        <strong>Results:</strong> Personalized Matches
+                    </div>
+                    <a href="{% url 'contact' %}" class="view-link">Get in Touch →</a>
+                </div>
+            </div>
+
+            <!-- 3. AI-Powered Matching -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">🤖</div>
+                        <h3>AI-Powered Matching</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        Our smart AI doesn't just match keywords – it understands your "nia" (purpose)! Tell us what excites you, and we'll find jobs that make your heart sing. No more boring applications! 🎯
+                    </p>
+                    <div class="company-info">
+                        <strong>Tech:</strong> Advanced AI<br>
+                        <strong>Success Rate:</strong> 85% Match Accuracy
+                    </div>
+                    <a href="{% url 'jobs' %}" class="view-link">Find Your Match →</a>
+                </div>
+            </div>
+
+            <!-- 4. Community Vibes -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">👥</div>
+                        <h3>Community Vibes</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        Join the Niajiri community! Share tips, celebrate wins, and support each other. From interns to CEOs, we're all in this together! 🌟
+                    </p>
+                    <div class="company-info">
+                        <strong>Members:</strong> 50,000+<br>
+                        <strong>Motto:</strong> "Together We Succeed"
+                    </div>
+                    <a href="{% url 'contact' %}" class="view-link">Join the Fun →</a>
+                </div>
+            </div>
+
+            <!-- 5. Employer Perks -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">🏢</div>
+                        <h3>For Employers</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        Post jobs that attract the right talent! Our platform helps you find employees who share your vision. Premium features for serious hirers. Let's build something amazing together! 💪
+                    </p>
+                    <div class="company-info">
+                        <strong>Features:</strong> Advanced Screening<br>
+                        <strong>Reach:</strong> Targeted Candidates
+                    </div>
+                    <a href="{% url 'employers' %}" class="view-link">Post a Job →</a>
+                </div>
+            </div>
+
+            <!-- 6. Success Stories -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">🏆</div>
+                        <h3>Success Stories</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        "Niajiri changed my life! Found my dream job in tech!" - Sarah. "Thanks Niajiri for connecting me with purpose!" - Jomo. Real people, real stories, real success! 📈
+                    </p>
+                    <div class="company-info">
+                        <strong>Placements:</strong> 10,000+<br>
+                        <strong>Satisfaction:</strong> 95%
+                    </div>
+                    <a href="{% url 'jobs' %}" class="view-link">Your Story Next →</a>
+                </div>
+            </div>
+
+            <!-- 7. Fun & Funky -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">🎨</div>
+                        <h3>Fun & Funky</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        Job hunting shouldn't be boring! We add emojis, memes, and personality to make the process enjoyable. Because finding work should be as fun as the job itself! 😄
+                    </p>
+                    <div class="company-info">
+                        <strong>Style:</strong> Funky & Friendly<br>
+                        <strong>Vibe:</strong> Positive Energy
+                    </div>
+                    <a href="{% url 'index' %}" class="view-link">Feel the Vibe →</a>
+                </div>
+            </div>
+
+            <!-- 8. Future Forward -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-icon">🚀</div>
+                        <h3>Future Forward</h3>
+                    </div>
+                </div>
+                <div class="company-card-content">
+                    <p class="company-description">
+                        We're always innovating! New features, better matching, more languages. Niajiri is evolving to meet your needs. The future of work starts here! 🔮
+                    </p>
+                    <div class="company-info">
+                        <strong>Updates:</strong> Monthly<br>
+                        <strong>Vision:</strong> Inclusive Employment
+                    </div>
+                    <a href="{% url 'contact' %}" class="view-link">Stay Updated →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Niajiri. All rights reserved.</p>
+    </footer>
+</body>
+</html>

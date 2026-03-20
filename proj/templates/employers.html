@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Employers - Niajiri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: #f8f8f8;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 10px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .tech-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .tech-card p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .search-section h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-form input,
+        .search-form select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .search-form button {
+            padding: 0.8rem 2rem;
+        }
+
+        /* Companies Section */
+        .companies-section {
+            margin-bottom: 3rem;
+        }
+
+        .companies-section h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .company-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .company-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .company-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-form input,
+            .search-form select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="{% url 'index' %}" class="logo">💼 Niajiri</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'jobs' %}">Jobs</a></li>
+                <li><a href="{% url 'employers' %}">Employers</a></li>
+                <li><a href="{% url 'business_list' %}">Businesses</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'payment' %}">Pay Service</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>For Employers</h1>
+        <p>Find top talent and grow your business</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-section">
+            <h2>Find the Perfect Candidates</h2>
+            <form class="search-form">
+                <input type="text" placeholder="Keywords (e.g., software engineer)" name="keywords" required>
+                <input type="text" placeholder="Location (e.g., Nairobi)" name="location" required>
+                <select name="industry" required>
+                    <option value="">Select Industry</option>
+                    <option value="technology">Technology</option>
+                    <option value="finance">Finance</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="retail">Retail</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="telecommunications">Telecommunications</option>
+                    <option value="energy">Energy</option>
+                    <option value="other">Other</option>
+                </select>
+                <select name="job_type" required>
+                    <option value="">Select Job Type</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="contract">Contract</option>
+                    <option value="internship">Internship</option>
+                    <option value="freelance">Freelance</option>
+                </select>
+                <button type="submit" class="btn">Search Candidates</button>
+            </form>
+        </div>
+
+        <!-- Top Companies Section -->
+        <div class="companies-section">
+            <h2>Top Companies Hiring in Kenya</h2>
+            <div class="companies-grid">
+                <div class="company-card">
+                    <h3>Safaricom</h3>
+                    <p>Telecommunications</p>
+                    <a href="https://safaricom.co.ke" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>Kenya Airways</h3>
+                    <p>Airlines</p>
+                    <a href="https://www.kenya-airways.com" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>KCB Group</h3>
+                    <p>Banking & Financial Services</p>
+                    <a href="https://kcbgroup.com" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>Equity Group Holdings</h3>
+                    <p>Banking & Financial Services</p>
+                    <a href="https://equitybank.co.ke" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>Nation Media Group</h3>
+                    <p>Media & Broadcasting</p>
+                    <a href="https://nation.africa" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>East African Breweries</h3>
+                    <p>Beverages</p>
+                    <a href="https://eal.co.ke" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>Bamburi Cement</h3>
+                    <p>Building Materials</p>
+                    <a href="https://bamburi.com" target="_blank" class="btn">Visit Website</a>
+                </div>
+                <div class="company-card">
+                    <h3>CIC Insurance Group</h3>
+                    <p>Insurance</p>
+                    <a href="https://cic.co.ke" target="_blank" class="btn">Visit Website</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📝</div>
+                <h3>Job Posting</h3>
+                <p>Create and manage job postings with our easy-to-use platform. Reach thousands of qualified candidates.</p>
+                <a href="#pricing" class="btn">Get Started</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Talent Screening</h3>
+                <p>Use our advanced tools to filter and screen candidates based on skills, experience, and qualifications.</p>
+                <a href="#pricing" class="btn">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Analytics & Insights</h3>
+                <p>Get detailed analytics on your job postings, applicant demographics, and hiring success rates.</p>
+                <a href="#pricing" class="btn">View Analytics</a>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div id="pricing" class="pricing-section">
+            <h2 style="text-align: center; color: #667eea; margin-bottom: 2rem;">Choose Your Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <ul class="features-list">
+                        <li>5 Job Postings</li>
+                        <li>Basic Candidate Screening</li>
+                        <li>Email Support</li>
+                        <li>Basic Analytics</li>
+                    </ul>
+                    <a href="#" class="btn">Start Free Trial</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$299<span>/month</span></div>
+                    <ul class="features-list">
+                        <li>25 Job Postings</li>
+                        <li>Advanced Screening Tools</li>
+                        <li>Priority Support</li>
+                        <li>Detailed Analytics</li>
+                        <li>Featured Job Listings</li>
+                    </ul>
+                    <a href="#" class="btn">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$999<span>/month</span></div>
+                    <ul class="features-list">
+                        <li>Unlimited Job Postings</li>
+                        <li>Premium Screening Suite</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Custom Analytics</li>
+                        <li>API Access</li>
+                    </ul>
+                    <a href="#" class="btn">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="tech-stack">
+            <h2 style="color: #667eea; margin-bottom: 2rem;">Powered by Modern Technology</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>🎨 Bootstrap</h3>
+                    <p>Responsive, mobile-first design framework ensuring your job postings look great on all devices.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>🐍 Django</h3>
+                    <p>Robust backend framework handling millions of job applications with enterprise-grade security.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>💳 M-Pesa API</h3>
+                    <p>Secure payment processing for seamless subscription management and premium features.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Niajiri. All rights reserved.</p>
+    </footer>
+</body>
+</html>

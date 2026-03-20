@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - Niajiri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .search-filter {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .search-filter input,
+        .search-filter select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-filter button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .search-filter button:hover {
+            transform: scale(1.02);
+        }
+
+        /* Jobs List */
+        .jobs-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .job-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid #667eea;
+        }
+
+        .job-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .job-company {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item {
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .salary {
+            background: #e8f0ff;
+            color: #667eea;
+            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .job-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .apply-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .posted-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .job-header {
+                flex-direction: column;
+            }
+
+            .job-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .search-filter {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="{% url 'index' %}" class="logo">💼 Niajiri</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'jobs' %}">Jobs</a></li>
+                <li><a href="{% url 'employers' %}">Employers</a></li>
+                <li><a href="{% url 'business_list' %}">Businesses</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'payment' %}">Pay Service</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Job Opportunities</h1>
+        <p>50,000+ positions available now</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search & Filter -->
+        <div class="search-filter">
+            <input type="text" placeholder="Job title or keyword...">
+            <select>
+                <option>All Locations</option>
+                <option>New York</option>
+                <option>San Francisco</option>
+                <option>London</option>
+                <option>Remote</option>
+            </select>
+            <select>
+                <option>All Industries</option>
+                <option>Technology</option>
+                <option>Finance</option>
+                <option>Healthcare</option>
+                <option>Consulting</option>
+            </select>
+            <select>
+                <option>Job Type</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Contract</option>
+                <option>Internship</option>
+            </select>
+            <button>Search Jobs</button>
+        </div>
+
+        <!-- Jobs List -->
+        <div class="jobs-list">
+            <!-- Job 1 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">TechVision Inc.</div>
+                        <div class="job-title">Senior Software Engineer</div>
+                    </div>
+                    <span class="salary">$150K - $190K</span>
+                </div>
+                <div class="job-meta">
+                    <span class="meta-item">📍 San Francisco, CA</span>
+                    <span class="meta-item">⏱️ Full-time</span>
+                    <span class="meta-item">🔧 Python, AWS, React</span>
+                </div>
+                <div class="job-description">
+                    We're looking for an experienced Senior Software Engineer to lead our cloud infrastructure team. You'll work on scalable systems serving millions of users.
+                </div>
+                <div class="job-footer">
+                    <span class="posted-date">Posted 2 days ago</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">FinanceFlow Global</div>
+                        <div class="job-title">Investment Analyst</div>
+                    </div>
+                    <span class="salary">$120K - $160K</span>
+                </div>
+                <div class="job-meta">
+                    <span class="meta-item">📍 New York, NY</span>
+                    <span class="meta-item">⏱️ Full-time</span>
+                    <span class="meta-item">📊 Finance, Excel, SQL</span>
+                </div>
+                <div class="job-description">
+                    Join our investment team to analyze market trends and identify opportunities. Work with cutting-edge financial tools and experienced analysts.
+                </div>
+                <div class="job-footer">
+                    <span class="posted-date">Posted 3 days ago</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">HealthCare Plus</div>
+                        <div class="job-title">Healthcare Data Scientist</div>
+                    </div>
+                    <span class="salary">$110K - $150K</span>
+                </div>
+                <div class="job-meta">
+                    <span class="meta-item">📍 Boston, MA</span>
+                    <span class="meta-item">⏱️ Full-time</span>
+                    <span class="meta-item">🤖 Machine Learning, Python</span>
+                </div>
+                <div class="job-description">
+                    Help us revolutionize healthcare through data science. Develop predictive models that improve patient outcomes and operational efficiency.
+                </div>
+                <div class="job-footer">
+                    <span class="posted-date">Posted 1 day ago</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">ShopHub Commerce</div>
+                        <div class="job-title">Product Manager</div>
+                    </div>
+                    <span class="salary">$130K - $170K</span>
+                </div>
+                <div class="job-meta">
+                    <span class="meta-item">📍 Seattle, WA</span>
+                    <span class="meta-item">⏱️ Full-time</span>
+                    <span class="meta-item">🎯 Product Strategy, Analytics</span>
+                </div>
+                <div class="job-description">
+                    Lead product development for our e-commerce platform. Define strategy, manage roadmap, and collaborate with engineering and design teams.
+                </div>
+                <div class="job-footer">
+                    <span class="posted-date">Posted 4 days ago</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- Job 5 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">PowerNext Energy</div>
+                        <div class="job-title">Electrical Engineer</div>
+                    </div>
+                    <span class="salary">$100K - $140K</span>
+                </div>
+                <div class="job-meta">
+                    <span class="meta-item">📍 Denver, CO</span>
+                    <span class="meta-item">⏱️ Full-time</span>
+                    <span class="meta-item">⚡ Renewable Energy, CAD</span>
+                </div>
+                <div class="job-description">
+                    Design and develop renewable energy solutions. Work on cutting-edge solar and wind technology projects that impact our planet.
+                </div>
+                <div class="job-footer">
+                    <span class="posted-date">Posted 1 week ago</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- Job 6 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">EduTech Innovations</div>
+                        <div class="job-title">Curriculum Developer</div>
+                    </div>
+                    <span class="salary">$90K - $130K</span>
+                </div>
+                <div class="job-meta">
+                    <span class="meta-item">📍 Remote</span>
+                    <span class="meta-item">⏱️ Full-time</span>
+                    <span class="meta-item">📚 Education, Content Creation</span>
+                </div>
+                <div class="job-description">
+                    Create engaging educational content for millions of learners worldwide. Shape the future of online education with innovative curriculum.
+                </div>
+                <div class="job-footer">
+                    <span class="posted-date">Posted 5 days ago</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Niajiri. All rights reserved.</p>
+    </footer>
+</body>
+</html>

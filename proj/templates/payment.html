@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Website Service</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 400px; margin: 0 auto; }
+        input, button { display: block; width: 100%; margin: 10px 0; padding: 10px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pay for Website Service</h2>
+        <p>Amount: 50 KSH</p>
+        <form id="paymentForm">
+            {% csrf_token %}
+            <label for="phone">Phone Number (e.g., 0712345678):</label>
+            <input type="text" id="phone" name="phone_number" required placeholder="0712345678">
+            <button type="submit">Pay Now</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value;
+            const resultDiv = document.getElementById('result');
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            // Basic phone validation
+            if (!/^(\+254|0)[17]\d{8}$/.test(phone.replace(/\s/g, ''))) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter a valid Kenyan phone number.</p>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<p>Processing payment...</p>';
+
+            fetch('/payment/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': csrfToken
+                },
+                body: new URLSearchParams({
+                    'phone_number': phone
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ResponseCode === '0') {
+                    resultDiv.innerHTML = '<p style="color: green;">STK Push sent successfully! Check your phone for the M-Pesa prompt.</p>';
+                } else {
+                    resultDiv.innerHTML = '<p style="color: red;">Error: ' + (data.error || 'Unknown error') + '</p>';
+                }
+            })
+            .catch(error => {
+                resultDiv.innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            });
+        });
+    </script>
+</body>
+</html>

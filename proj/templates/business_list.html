@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Directory</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .business-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .business-card img { max-width: 200px; height: auto; }
+        .business-card h3 { margin-top: 0; }
+        .add-button { background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-bottom: 20px; }
+        .add-button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Business Directory</h2>
+        <a href="{% url 'register_business' %}" class="add-button">Register New Business</a>
+
+        {% for business in businesses %}
+            <div class="business-card">
+                {% if business.image %}
+                    <img src="{{ business.image.url }}" alt="{{ business.name }}">
+                {% endif %}
+                <h3>{{ business.name }}</h3>
+                <p><strong>Type:</strong> {{ business.business_type }}</p>
+                <p><strong>Location:</strong> {{ business.location }}</p>
+                <p><strong>Contact:</strong> {{ business.contact_person }} - {{ business.phone }}</p>
+                <p><strong>Email:</strong> {{ business.email }}</p>
+                <p>{{ business.description }}</p>
+                <p><em>Registered on: {{ business.created_at|date:"M d, Y" }}</em></p>
+            </div>
+        {% empty %}
+            <p>No businesses registered yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
