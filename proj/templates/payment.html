@@ -1,17 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment - Website Service</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { max-width: 400px; margin: 0 auto; }
-        input, button { display: block; width: 100%; margin: 10px 0; padding: 10px; }
-        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #45a049; }
-        #result { margin-top: 20px; padding: 10px; border: 1px solid #ddd; }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
 </head>
 <body>
     <div class="container">

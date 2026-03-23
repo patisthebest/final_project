@@ -1,24 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Job Vacancy</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; min-height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
-        .container { max-width: 700px; margin: 0 auto; padding: 3rem 1rem; }
-        h2 { margin-bottom: 1rem; }
-        form { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); padding: 20px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); color: #fff; }
-        label { display: block; margin-top: 10px; font-weight: 600; }
-        input, textarea, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid rgba(255,255,255,0.35); border-radius: 5px; background: rgba(255,255,255,0.95); color: #111; }
-        button { background: #ffffff; color: #667eea; padding: 10px 16px; border: none; cursor: pointer; margin-top: 20px; border-radius: 6px; font-weight: 700; }
-        button:hover { background: #f3f3f3; }
-        .messages { margin-bottom: 20px; }
-        .success { color: #b7f5b7; }
-        .error { color: #ffcfdf; }
-        a { color: #f8f8f8; text-decoration: underline; }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
 </head>
 <body>
     <div class="container">
